@@ -1,10 +1,11 @@
+import "./dashboard.scss"
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
 function DashboardPage() {
    return (
 		<div>
-			Dashboard Sayfası
+			<p>Dashboard Sayfası</p>
 			<Outlet />
 		</div>
    )
