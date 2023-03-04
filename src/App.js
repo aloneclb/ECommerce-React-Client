@@ -1,11 +1,11 @@
 import './App.css';
-import { Routes, Route, Link, NavLink } from "react-router-dom";
-import DashboardPage from "./AdminPages/Dashboard";
+import { Routes, Route } from "react-router-dom";
+import AdminPage from './Admin/AdminPage';
 import HomePage from './UIPages/HomePage';
 
 function App() {
 	return (
-		<div className="App">
+		<div>
 			<Routes>
 				{/* Home Pages */}
 				<Route path='/' element={<HomePage />}>
@@ -14,7 +14,7 @@ function App() {
 
 
 				{/* Admin Pages */}
-				<Route path='/admin' element={<DashboardPage />}>
+				<Route path='/admin' element={<AdminPage />}>
 					
 				</Route>
 			</Routes>
@@ -26,6 +26,7 @@ function App() {
 export default App;
 
 
+// import { Routes, Route, Link, NavLink } from "react-router-dom";
 // {/* <Route path='/contact' element={<ContactPage />} /> */}
 				
 //	{/* Alt url'ler eklemek için */}

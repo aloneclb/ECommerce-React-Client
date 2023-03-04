@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom'
 import { Button, Menu } from 'antd';
 import {
 	AppstoreOutlined,
@@ -20,7 +19,7 @@ function getItem(label, key, icon, children, type) {
 }
 
 const items = [
-	getItem('Option 1', '1', <AppstoreOutlined />),
+	getItem('asdsad 1', '1', <AppstoreOutlined />),
 	getItem('Option 2', '2', <AppstoreOutlined />),
 	getItem('Option 3', '3', <PieChartOutlined />),
 	getItem('Navigation One', 'sub1', <ContainerOutlined />, [
@@ -37,7 +36,7 @@ const items = [
 ];
 
 
-const HomePage = () => {
+const Sidebar = () => {
 	const [collapsed, setCollapsed] = useState(false);
 	const toggleCollapsed = () => {
 		setCollapsed(!collapsed);
@@ -45,21 +44,19 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<div style={{ width: 256 }}>
-				<Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-					{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-				</Button>
+			<div className="logo" />
+			{/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+				{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+			</Button> */}
 
-				<Menu defaultSelectedKeys={['1']}
-					defaultOpenKeys={['sub1']}
-					mode="inline"
-					theme="light"
-					inlineCollapsed={collapsed}
-					items={items} />
-			</div>
-			<Outlet />
+			<Menu defaultSelectedKeys={['1']}
+				defaultOpenKeys={['sub1']}
+				mode="inline"
+				theme="light"
+				inlineCollapsed={collapsed}
+				items={items} />
 		</div>
   )
 }
 
-export default HomePage
+export default Sidebar
