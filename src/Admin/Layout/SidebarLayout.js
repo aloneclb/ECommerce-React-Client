@@ -1,10 +1,10 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { Button, Menu } from 'antd';
 import {
 	AppstoreOutlined,
 	ContainerOutlined,
-	MenuFoldOutlined,
-	MenuUnfoldOutlined,
+	//MenuFoldOutlined,
+	//MenuUnfoldOutlined,
 	PieChartOutlined } from '@ant-design/icons';
 
 
@@ -42,8 +42,6 @@ const items = [
 
 
 const SidebarLayout = () => {
-	const [collapsed, setCollapsed] = useState(false);
-
 	return (
 		<div>
 			<div className="logo"/>
@@ -51,7 +49,6 @@ const SidebarLayout = () => {
 				defaultOpenKeys={['sub1']}
 				mode="inline"
 				theme="light"
-				inlineCollapsed={collapsed}
 				items={items} />
 		</div>
   )
@@ -59,8 +56,9 @@ const SidebarLayout = () => {
 
 export default SidebarLayout
 
-
-
+// Manuel Hamburger Menu 
+				// inlineCollapsed={collapsed}
+	// const [collapsed, setCollapsed] = useState(false);
 	// const toggleCollapsed = () => {
 	// 	setCollapsed(!collapsed);
 	//  };
