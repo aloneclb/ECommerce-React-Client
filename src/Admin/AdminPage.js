@@ -2,8 +2,9 @@ import "./AdminPage.scss"
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Layout } from 'antd';
-import Sidebar from './Layout/Sidebar'
-const { Header, Content, Footer, Sider } = Layout;
+import SidebarLayout from './Layout/SidebarLayout'
+import HeaderLayout from "./Layout/HeaderLayout";
+const { Content, Footer, Sider } = Layout;
 
 function AdminPage() {
 	return (
@@ -19,10 +20,10 @@ function AdminPage() {
 					console.log(collapsed, type);
 				}}
 			>
-				<Sidebar/>
+				<SidebarLayout/>
 			</Sider>
 			<Layout className="bg-white">
-				<Header style={{ padding: 0 }} />
+				<HeaderLayout />
 				<Content className="bg-white" style={{ margin: '24px 16px 0'}}>
 				
 					<Outlet />
