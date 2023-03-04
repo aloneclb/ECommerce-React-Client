@@ -1,62 +1,12 @@
-import { useState } from 'react';
+import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Button, Menu } from 'antd';
-import {
-	AppstoreOutlined,
-	ContainerOutlined,
-	MenuFoldOutlined,
-	MenuUnfoldOutlined,
-	PieChartOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
-
-function getItem(label, key, icon, children, type) {
-	return {
-		key,
-		icon,
-		children,
-		label,
-		type,
-	};
-}
-
-const items = [
-	getItem('Option 1', '1', <AppstoreOutlined />),
-	getItem('Option 2', '2', <AppstoreOutlined />),
-	getItem('Option 3', '3', <PieChartOutlined />),
-	getItem('Navigation One', 'sub1', <ContainerOutlined />, [
-		getItem('Option 5', '5'),
-		getItem('Option 6', '6'),
-		getItem('Option 7', '7'),
-		getItem('Option 8', '8'),
-	]),
-	getItem('Navigation Two', 'sub2', <ContainerOutlined />, [
-		getItem('Option 9', '9'),
-		getItem('Option 10', '10'),
-		getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
-	]),
-];
-
-
-const HomePage = () => {
-	const [collapsed, setCollapsed] = useState(false);
-	const toggleCollapsed = () => {
-		setCollapsed(!collapsed);
-	 };
-
+function HomePage() {
 	return (
 		<div>
-			<div style={{ width: 256 }}>
-				<Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-					{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-				</Button>
-
-				<Menu defaultSelectedKeys={['1']}
-					defaultOpenKeys={['sub1']}
-					mode="inline"
-					theme="light"
-					inlineCollapsed={collapsed}
-					items={items} />
-			</div>
+			Home Page
+			<Button type="primary" href='/admin'>Primary Button</Button>
 			<Outlet />
 		</div>
   )

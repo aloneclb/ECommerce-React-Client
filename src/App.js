@@ -2,6 +2,10 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import AdminPage from './Admin/AdminPage';
 import HomePage from './UIPages/HomePage';
+import ExamplePage from './AdminPages/ExamplePage';
+
+
+const routes = []
 
 function App() {
 	return (
@@ -15,7 +19,7 @@ function App() {
 
 				{/* Admin Pages */}
 				<Route path='/admin' element={<AdminPage />}>
-					
+					<Route path='example-page' element={<ExamplePage />}></Route>
 				</Route>
 			</Routes>
 

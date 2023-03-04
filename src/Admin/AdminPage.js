@@ -1,16 +1,24 @@
 import "./AdminPage.scss"
 import React from 'react'
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom'
-import { Layout, Menu, theme } from 'antd';
+import { Layout } from 'antd';
 import Sidebar from './Layout/Sidebar'
 const { Header, Content, Footer, Sider } = Layout;
 
 function AdminPage() {
 	return (
 	<div>
-		<Layout className="admin-layout">
-			<Sider>
+		<Layout className="admin-layout" style={{ backgroundColor: "white" }}>
+			<Sider
+				breakpoint="lg"
+				collapsedWidth="0"
+				onBreakpoint={(broken) => {
+					console.log(broken);
+				}}
+				onCollapse={(collapsed, type) => {
+					console.log(collapsed, type);
+				}}
+			>
 				<Sidebar/>
 			</Sider>
 			<Layout className="bg-white">
