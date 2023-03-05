@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { Button, Menu } from 'antd'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Menu } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 import {
 	AppstoreOutlined,
@@ -21,7 +21,7 @@ function getItem(label, key, icon, children, type) {
 }
 
 const items = [
-	getItem('Dashboard', '1', <AppstoreOutlined />),
+	getItem('Dashboard', '', <AppstoreOutlined />),
 	getItem('Dashboard', '2', <AppstoreOutlined />),
 	getItem('Dashboard', '3', <PieChartOutlined />),
 	getItem('Ürün Yönetimi', 'sub1', <ContainerOutlined />, [
@@ -51,19 +51,19 @@ const items = [
 
 
 const SidebarLayout = () => {
-	const [selectedMenuItem, setSelectedMenuItem]= useState('');
+	const [selectedMenuItem, setSelectedMenuItem]= useState(window.location.pathname.split("/")[2].toString() + "/");
 	const navigate = useNavigate()
 
 	return (
 		<div>
 			<div className="logo"/>
-			<Menu defaultSelectedKeys={['1']}
+			<Menu defaultSelectedKeys={[selectedMenuItem]}
 				defaultOpenKeys={['sub1']}
 				mode="inline"
 				theme="light"
 				onClick={(e) => {
 					setSelectedMenuItem(e.key)
-					navigate(`/admin/products/`)
+					navigate(`/admin/${e.key}`)
 				}}
 				items={items} />
 		</div>
@@ -78,6 +78,6 @@ export default SidebarLayout
 	// const toggleCollapsed = () => {
 	// 	setCollapsed(!collapsed);
 	//  };
-			{/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-				{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-			</Button> */}
+			// {/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+			// 	{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+			// </Button> */}

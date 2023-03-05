@@ -7,25 +7,23 @@ import ProductListPage from './AdminPages/Product/ProductListPage';
 import ProductAddPage from './AdminPages/Product/ProductAddPage';
 
 
-const routes = []
+// const routes = []
 
 function App() {
 	return (
 		<div>
-			{/* Home Pages */}
+
 			<Routes>
+				{/* Home Pages */}
 				<Route path='/' element={<HomePage />}>
-
 				</Route>
-			</Routes>
 
-			{/* Admin Pages */}
-			<Routes>
+				{/* Admin Pages */}
 				<Route path='/admin' element={<AdminPage />}>
 					<Route path='example-page' element={<ExamplePage />}></Route>
 					
 					{/* Products Route */}
-					<Route path='products'>
+					<Route path='products/'>
 						<Route path='' element={<ProductListPage />}></Route>
 						<Route path='add' element={<ProductAddPage />}></Route>
 						<Route path=':id' element={<ExamplePage />}></Route>
