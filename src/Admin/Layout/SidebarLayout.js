@@ -61,8 +61,10 @@ const SidebarLayout = () => {
 				defaultOpenKeys={['sub1']}
 				mode="inline"
 				theme="light"
-				onClick={(e) => 
-					setSelectedMenuItem(e.key)}
+				onClick={(e) => {
+					setSelectedMenuItem(e.key)
+					navigate(`/admin/products/`)
+				}}
 				items={items} />
 		</div>
   )
