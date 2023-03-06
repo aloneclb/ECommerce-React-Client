@@ -7,7 +7,17 @@ import ProductListPage from './AdminPages/Product/ProductListPage';
 import ProductAddPage from './AdminPages/Product/ProductAddPage';
 
 
-// const routes = []
+export const AdminRoutes = {
+	admin: {
+		root: 'admin',
+		products: {
+			root: 'products',
+			add: 'add',
+			edit: 'edit',
+			delete: 'delete'
+		},
+	},
+}
 
 function App() {
 	return (
@@ -19,13 +29,13 @@ function App() {
 				</Route>
 
 				{/* Admin Pages */}
-				<Route path='/admin' element={<AdminPage />}>
+				<Route path={AdminRoutes.admin.root} element={<AdminPage />}>
 					<Route path='example-page' element={<ExamplePage />}></Route>
 					
 					{/* Products Route */}
-					<Route path='products/'>
+					<Route path={AdminRoutes.admin.products.root}>
 						<Route path='' element={<ProductListPage />}></Route>
-						<Route path='add' element={<ProductAddPage />}></Route>
+						<Route path={AdminRoutes.admin.products.add} element={<ProductAddPage />}></Route>
 						<Route path=':id' element={<ExamplePage />}></Route>
 						<Route path='edit/:id' element={<ExamplePage />}></Route>
 						<Route path='delete/:id' element={<ExamplePage />}></Route>

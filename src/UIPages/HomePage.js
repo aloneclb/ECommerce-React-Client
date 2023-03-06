@@ -6,7 +6,7 @@ function HomePage() {
 	return (
 		<div>
 			Home Page
-			<Button type="primary" href='/admin'>Primary Button</Button>
+			<Button type="primary" href='/admin/'>Primary Button</Button>
 			<Outlet />
 		</div>
   )
