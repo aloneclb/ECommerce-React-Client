@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Space, Table } from 'antd';
 import { useNavigate } from 'react-router-dom'
-
+import $ from "jquery"
 
 
 
@@ -46,7 +46,7 @@ function ProductListPage() {
       };
       fetch(url, requestOptions)
          .then(response => response.json())
-         .then(window.location.reload());
+         .then($(e.target.parentElement.parentElement.parentElement.parentElement).fadeOut(200));
    }
    
    const columns = [
