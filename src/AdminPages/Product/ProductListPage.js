@@ -7,7 +7,7 @@ import $ from "jquery"
 
 function ProductListPage() {
    const navigate = useNavigate()
-   const [productList, setproductList] = useState(data);
+   const [productList, setproductList] = useState([]);
    const [totalCount, settotalCount] = useState(5);
    const [page, setpage] = useState(0);
    const [pageSize, setpageSize] = useState(5);
@@ -28,7 +28,7 @@ function ProductListPage() {
             setproductList(datas.products)
             settotalCount(datas.totalCount)
          });
-   }, [pageSize, page]);
+   }, [pageSize, page, productList]);
 
    const onChange = (pageNumber, pageSize) => {
       //pagination için
@@ -47,6 +47,8 @@ function ProductListPage() {
       fetch(url, requestOptions)
          .then(response => response.json())
          .then($(e.target.parentElement.parentElement.parentElement.parentElement).fadeOut(200));
+      
+      setproductList();
    }
    
    const columns = [
@@ -90,20 +92,6 @@ function ProductListPage() {
          ),
       }
     ];
-    var data = [
-      // {
-      //    key: '3',
-      //    id: 4,
-      //    name: 'Joe Black',
-      //    stock: 32,
-      //    updated_date: 'Sydney No. 1 Lake Park',
-      //    created_date: 'New York No. 1 Lake Park',
-      //    tags: ['cool', 'teacher'],
-      // },
-   ];
-
-   
-
 
    return (
       <div>
@@ -111,7 +99,7 @@ function ProductListPage() {
             <Button onClick={() => {navigate(`/admin/products/add/`)}} className='m-2 me-2' type="primary" ghost>Ürün Ekle +</Button>
          </div>
          <Table columns={columns} dataSource={productList} rowKey={(record) => record.id}
-            pagination={{ defaultPageSize: pageSize, showSizeChanger: true, pageSizeOptions: ['10', '25', '50'], total:totalCount, onChange:onChange }}
+            pagination={{ defaultPageSize: pageSize, showSizeChanger: true, pageSizeOptions: ['3', '5','10', '25', '50'], total:totalCount, onChange:onChange }}
          />
       </div>
    )
