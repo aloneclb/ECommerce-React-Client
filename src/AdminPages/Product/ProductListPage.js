@@ -1,60 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Button, Space, Table, Tag } from 'antd';
+import { Button, Space, Table } from 'antd';
 import { useNavigate } from 'react-router-dom'
 
 
-const columns = [
-   {
-      title: '#',
-      dataIndex: 'id',
-      key: 'id',
-      render: (text, record) => (
-         <a href={record.id + "/edit"}>{text}</a>
-      ),
-   },
-   {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-   },
-   {
-      title: 'Stock',
-      dataIndex: 'stock',
-      key: 'stock',
-   },
-   {
-      title: 'Created Date',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-   },
-   {
-      title: 'Updated Date',
-      dataIndex: 'updatedAt',
-      key: 'updatedAt',
-   },
-   {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-         <Space size="middle">
-         <a>Edit</a>
-         <a>Delete</a>
-         </Space>
-      ),
-   }
- ];
- var data = [
-   {
-      key: '3',
-      id: 4,
-      name: 'Joe Black',
-      stock: 32,
-      updated_date: 'Sydney No. 1 Lake Park',
-      created_date: 'New York No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-   },
-];
 
 
 function ProductListPage() {
@@ -64,6 +12,7 @@ function ProductListPage() {
    const [page, setpage] = useState(0);
    const [pageSize, setpageSize] = useState(5);
 
+   // For Pagination And List
    useEffect(() => {
       const url = new URL("http://localhost:5268/api/products")
       const params = { page:page, pageSize:pageSize }
@@ -85,9 +34,75 @@ function ProductListPage() {
       //pagination için
       setpage(pageNumber - 1)
       setpageSize(pageSize)
-      console.log('Page: ', pageNumber);
-      console.log('Page: ', pageSize);
-    };
+   };
+
+
+   const DeleteBtnClick = (e) =>{
+      const product_id = e.target.id
+      const url = new URL("http://localhost:5268/api/products/" + product_id.toString())
+      const requestOptions = {
+         method: 'DELETE',
+         headers: { 'Content-Type': 'application/json' },
+      };
+      fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(window.location.reload());
+   }
+   
+   const columns = [
+      {
+         title: '#',
+         dataIndex: 'id',
+         key: 'id',
+         render: (text, record) => (
+            <a href={record.id + "/edit"}>{text}</a>
+         ),
+      },
+      {
+         title: 'Name',
+         dataIndex: 'name',
+         key: 'name',
+         render: (text) => <a>{text}</a>,
+      },
+      {
+         title: 'Stock',
+         dataIndex: 'stock',
+         key: 'stock',
+      },
+      {
+         title: 'Created Date',
+         dataIndex: 'createdAt',
+         key: 'createdAt',
+      },
+      {
+         title: 'Updated Date',
+         dataIndex: 'updatedAt',
+         key: 'updatedAt',
+      },
+      {
+         title: 'Action',
+         key: 'action',
+         render: (_, record) => (
+            <Space size="middle">
+               <a href={record.id + "/edit"}>Edit</a>
+               <a onClick={DeleteBtnClick} id={record.id}>Delete</a>
+            </Space>
+         ),
+      }
+    ];
+    var data = [
+      // {
+      //    key: '3',
+      //    id: 4,
+      //    name: 'Joe Black',
+      //    stock: 32,
+      //    updated_date: 'Sydney No. 1 Lake Park',
+      //    created_date: 'New York No. 1 Lake Park',
+      //    tags: ['cool', 'teacher'],
+      // },
+   ];
+
+   
 
 
    return (
