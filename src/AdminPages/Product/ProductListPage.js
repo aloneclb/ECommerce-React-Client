@@ -3,8 +3,6 @@ import { Button, Space, Table } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import $ from "jquery"
 
-
-
 function ProductListPage() {
    const navigate = useNavigate()
    const [productList, setproductList] = useState([]);
