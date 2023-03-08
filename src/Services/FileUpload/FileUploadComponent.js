@@ -2,15 +2,24 @@ import React from 'react'
 import { PlusOutlined } from '@ant-design/icons';
 import { Form, Upload } from 'antd';
 import { useState } from 'react';
+import { paste } from '@testing-library/user-event/dist/paste';
 
 function FileUploadComponent() {
-   const dummyRequest = ({ file, onSuccess }) => {
-      // console.log(file)
-      onSuccess("ok");
-   };
+   
    const selectedFileList = []
    const nextState = {};
-   
+   var datas = new FormData()
+  
+   const dummyRequest = ({ file, onSuccess }) => {
+      datas.append("images", file)
+      console.log(datas.getAll("images"))
+      onSuccess("ok");
+   };
+
+   const imageRemove = () =>{
+      console.log(datas.getAll("images"))
+   }
+
    const Deneme = (info) => {
       switch (info.file.status) {
          case "uploading":
@@ -23,19 +32,31 @@ function FileUploadComponent() {
             nextState.selectedFileList = selectedFileList;
             break;
 
-         default:
-            const index = selectedFileList.indexOf(info.file);
-            const x = selectedFileList.splice(index, 1);
-            // error or removed
-            selectedFileList.map((item) => {
-               console.log(item.uid)
-            })
+         case "removed":
+            imageRemove();
+            break;
+
+         // default:
+         //    break;
 
       }
-      console.log(nextState);
    }
 
+   const deneme = (e) => {
+      const url = new URL("http://localhost:5268/api/products/upload")
+
+      const requestOptions = {
+         method: 'POST',
+         // headers: { 'Content-Type': 'application/json' },
+         body: datas
+      };
+      fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(datas => console.log("data"));
+   };
+
   return (
+      <div>
       <Form.Item label="Upload" valuePropName="fileList">
          <Upload action="/upload.do" listType="picture-card" customRequest={dummyRequest} multiple onChange={Deneme}>
          <div>
@@ -50,6 +71,8 @@ function FileUploadComponent() {
          </div>
          </Upload>
       </Form.Item>
+      <button onClick={deneme}>gönder</button>
+      </div>
   )
 }
 
