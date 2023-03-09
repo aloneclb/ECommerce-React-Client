@@ -3,6 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Form, Upload } from 'antd';
 import { useState } from 'react';
 import { paste } from '@testing-library/user-event/dist/paste';
+import { data } from 'jquery';
 
 function FileUploadComponent() {
    
@@ -12,12 +13,18 @@ function FileUploadComponent() {
   
    const dummyRequest = ({ file, onSuccess }) => {
       datas.append("images", file)
-      console.log(datas.getAll("images"))
       onSuccess("ok");
    };
 
-   const imageRemove = () =>{
-      console.log(datas.getAll("images"))
+   const imageRemove = (fileuid) =>{
+      const myArray = datas.getAll("images");
+      const index = myArray.map(e => e.uid).indexOf(fileuid);
+      myArray.splice(index, 1);
+
+      datas.delete("images")
+      myArray.forEach(element => {
+         datas.append("images", element)
+      });
    }
 
    const Deneme = (info) => {
@@ -33,7 +40,7 @@ function FileUploadComponent() {
             break;
 
          case "removed":
-            imageRemove();
+            imageRemove(info.file.uid);
             break;
 
          // default:
