@@ -26,7 +26,7 @@ function ProductListPage() {
             setproductList(datas.products)
             settotalCount(datas.totalCount)
          });
-   }, [pageSize, page, productList]);
+   }, [pageSize, page]);
 
    const onChange = (pageNumber, pageSize) => {
       //pagination için
@@ -46,7 +46,7 @@ function ProductListPage() {
          .then(response => response.json())
          .then($(e.target.parentElement.parentElement.parentElement.parentElement).fadeOut(200));
       
-      setproductList();
+      setpage(page);
    }
    
    const columns = [
